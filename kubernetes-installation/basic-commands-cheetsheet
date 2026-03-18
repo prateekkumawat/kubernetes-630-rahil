@@ -1,0 +1,47 @@
+# kubectl get node     // details of node
+
+# kubectl describe node node_name    // node details show 
+
+# kubectl taint  node ip-172-31-12-94 node-role.kubernetes.io/control-
+plane:NoSchedule-   // remove master node taint 
+
+# kubectl get pod -A  // all pod in kubernetes system 
+
+# kubectl create ns ns_name   // create namespace 
+
+# kubectl delete ns ns_name 
+
+# kubectl get ns 
+
+# kubectl run nginx --image=nginx:latest --port=80
+
+# - kubernetes default registry k8s.registry.com 
+- if we want use own registry if its public direct mention path 
+- if its private we need to set secret in namespace 
+- if not mention any namespace it will deploy all in default namespace   
+- as per production we don't use defaults 
+
+# kubernetes follow two method 
+- Imperative method --- command --- suggest for debug and troubleshoot 
+- declerative method ---- yaml  --- for deployment 
+
+# kubectl edit pod nginx    // edit exsting poda and resource 
+
+# kubectl logs  pod nginx
+
+# kubectl get pod -o wide
+
+# kubectl run httpd  --image=httpd :latest --port=80 --dry-run=client
+ -o yaml
+
+# 3 commonerror and pod status 
+    1. OOMkilled ERROR ::: Memory usages 
+    2. imagepullerror  ::: image does not exist 
+    3. Crashbackloopoff ::: container boot failure // parameters // start failure 
+    4. Running ::: pod perfect running 
+    5. pending :::: not allocated to node for schdule 
+
+# service :::: 
+   ClusterIP :: kubernetes node can access pod 
+   NodePort :: 30000 - 32767 ----- allocate port 
+   Load Balancer :: cloud 
