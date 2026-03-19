@@ -15,7 +15,7 @@ metadata:
 spec:
   containers:
   - name: nginx-webapp
-    image: prateekkumawat/niteshclass:webapp1
+    image: prateekkumawat/villa:latestd
     resources:
       requests:
         cpu: "200m"
