@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pod-example
+
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-app
+  namespace: pod-example
+  labels:
+    apptype: webapp 
+    appsource: nginx
+spec:
+  containers:
+  - name: nginx-webapp
+    image: prateekkumawat/niteshclass:webapp1
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "100Mi"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-app-svc
+  namespace: pod-example
+spec:
+  selector:
+    apptype: webapp 
+  ports:
+  - name: http-service
+    port: 8080
+    targetPort: 80
