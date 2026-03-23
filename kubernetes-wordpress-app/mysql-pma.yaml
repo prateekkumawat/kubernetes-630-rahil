@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  namespace: wordpress-app
+spec:
+  selector:
+    matchLabels:
+      app: pmaapp
+  template:
+    metadata:
+      labels:
+        app: pmaapp
+    spec:
+      containers:
+      - name: pmaapp
+        image: phpmyadmin
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "300Mi"
+          limits:
+            memory: "600Mi"
+            cpu: "800m"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: PMA_HOST
+          value: wordpress-mysql-svc.wordpress-app.svc.cluster.local
+        - name: PMA_PORT
+          value: "3306"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pma-svc
+  namespace: wordpress-app
+spec:
+  selector:
+    app: pmaapp
+  type: NodePort
+  ports:
+  - name: http-port
+    protocol: TCP
+    port: 80
+    targetPort: 80 
+    nodePort: 31081         
