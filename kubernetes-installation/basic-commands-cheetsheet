@@ -31,8 +31,7 @@ plane:NoSchedule-   // remove master node taint
 
 # kubectl get pod -o wide
 
-# kubectl run httpd  --image=httpd :latest --port=80 --dry-run=client
- -o yaml
+# kubectl run httpd  --image=httpd :latest --port=80 --dry-run=client -o yaml
 
 # 3 commonerror and pod status 
     1. OOMkilled ERROR ::: Memory usages 
