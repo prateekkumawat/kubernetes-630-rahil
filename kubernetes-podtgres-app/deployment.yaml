@@ -40,7 +40,7 @@ metadata:
   namespace: postgres-app
 spec:
   selector:
-    app:  Selector Label
+    app: postgres
   type: ClusterIP
   ports:
   - name: postgres
