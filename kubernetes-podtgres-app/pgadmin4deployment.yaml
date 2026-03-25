@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin4
+  namespace: postgres-app
+spec:
+  selector:
+    matchLabels:
+      app: pgadmin4
+  template:
+    metadata:
+      labels:
+        app: pgadmin4
+    spec:
+      containers:
+      - name: pgadmin4
+        image: dpage/pgadmin4:latest
+        resources:
+          requests: 
+            memory: "300Mi"
+            cpu: "300m"
+          limits:
+            memory: "600Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: PGADMIN_DEFAULT_EMAIL
+          value: admin@example.com
+        - name: PGADMIN_DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pgadmin-secrets
+              key: password
+
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pgadmin-svc
+  namespace: postgres-app
+spec:
+  selector:
+    app: pgadmin4
+  type: NodePort
+  ports:
+  - name: postgres
+    port: 80
+    targetPort: 80
+    nodePort: 31222
