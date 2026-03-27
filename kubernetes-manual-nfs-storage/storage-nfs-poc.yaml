@@ -50,7 +50,7 @@ spec:
       claimName: nfs-data-vol-mount1
   containers:
   - name: storage-mount-pod
-    image: ubuntu:latest
+    image: alpine
     resources:
       requests: 
         memory: "100Mi"
