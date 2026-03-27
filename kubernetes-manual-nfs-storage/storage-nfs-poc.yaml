@@ -39,7 +39,8 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: storage-mount-pod
+  name: storage-mount-
+  namespace: external-nfs-data
   labels:
     app: nfsmount
 spec:
