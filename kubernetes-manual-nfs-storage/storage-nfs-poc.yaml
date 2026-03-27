@@ -16,7 +16,6 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   mountOptions:
     - hard
-    - nfsvers=4.1
   nfs:
     path: /containerdata
     server: 172.31.8.218
