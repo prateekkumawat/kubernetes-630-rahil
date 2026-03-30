@@ -12,6 +12,10 @@ spec:
       labels:
         app: wordpress
     spec:
+      volumes:
+      - name: wpdatavol
+        persistenetVolumeClaim: 
+          claimName: wordpress-vol
       containers:
       - name: wordpress
         image: wordpress:latest
@@ -24,6 +28,9 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: wpdatavol
+          mountPath: /var/www/html/
         env: 
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql-svc.wordpress-app.svc.cluster.local

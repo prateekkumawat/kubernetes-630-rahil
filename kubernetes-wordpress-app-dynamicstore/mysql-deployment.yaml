@@ -12,6 +12,10 @@ spec:
       labels:
         app: mysql
     spec:
+      volumes:
+      - name: dbdatavol
+        persistentVolumeClaim: 
+          claimName: mysql-vol
       containers:
       - name: mysql
         image: mysql:latest
@@ -24,6 +28,9 @@ spec:
             cpu: "600m"
         ports:
         - containerPort: 3306
+        volumeMounts:
+        - name: dbdatavol
+          mountPath: /var/lib/mysql
         env: 
         - name: MYSQL_ROOT_PASSWORD
           value: redhat
