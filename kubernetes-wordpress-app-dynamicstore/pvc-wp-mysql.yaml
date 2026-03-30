@@ -8,7 +8,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClass: filesharestore
+  storageClassName: filesharestore
   accessModes:
     - ReadWriteOnce
 
@@ -23,6 +23,6 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClass: filesharestore
+  storageClassName: filesharestore
   accessModes:
     - ReadWriteOnce
