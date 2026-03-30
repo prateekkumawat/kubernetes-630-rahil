@@ -14,7 +14,7 @@ spec:
     spec:
       volumes:
       - name: wpdatavol
-        persistenetVolumeClaim: 
+        persistentVolumeClaim: 
           claimName: wordpress-vol
       containers:
       - name: wordpress
