@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  namespace: wordpress-app
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress:latest
+        resources:
+          requests: 
+            cpu: "400m"
+            memory: "300Mi"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: WORDPRESS_DB_HOST
+          value: wordpress-mysql-svc.wordpress-app.svc.cluster.local
+        - name: WORDPRESS_DB_USER
+          value: wordpress
+        - name: WORDPRESS_DB_PASSWORD
+          value: wpdb123
+        - name: WORDPRESS_DB_NAME
+          value: wpdata
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-svc
+  namespace: wordpress-app
+spec:
+  selector:
+    app: wordpress
+  type: NodePort
+  ports:
+  - name: http-port
+    protocol: TCP
+    port: 80
+    targetPort: 80 
+    nodePort: 31080

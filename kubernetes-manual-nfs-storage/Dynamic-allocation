@@ -1,0 +1,22 @@
+- nfs-csi-driver 
+- Installation::: 
+        https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/docs/install-csi-driver-v4.9.0.md
+
+- refreance link:  https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/deploy/example/storageclass-nfs.yaml
+
+
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-csi
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 172.31.8.218
+  share: /dynamic_container_data/
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer 
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.1
+

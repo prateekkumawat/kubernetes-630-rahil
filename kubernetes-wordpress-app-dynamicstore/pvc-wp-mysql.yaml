@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wordpress-vol
+  namespace: wordpress-app
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClass: filesharestore
+  accessModes:
+    - ReadWriteOnce
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-vol
+  namespace: wordpress-app
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClass: filesharestore
+  accessModes:
+    - ReadWriteOnce
