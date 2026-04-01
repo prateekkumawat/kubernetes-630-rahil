@@ -25,3 +25,7 @@ spec:
   - name: data-path
     hostPath:
       path: /opt/container-data-path
+
+
+# loghorn https://longhorn.io/docs/1.11.0/deploy/install/
+# openEBS https://openebs.io/docs/introduction-to-openebs/usecases
