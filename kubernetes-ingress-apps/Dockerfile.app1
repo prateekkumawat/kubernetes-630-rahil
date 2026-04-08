@@ -1,0 +1,5 @@
+FROM nginx:latest 
+
+RUN echo "api application path 1" > /usr/share/nginx/html/index.html
+
+EXPOSE 80

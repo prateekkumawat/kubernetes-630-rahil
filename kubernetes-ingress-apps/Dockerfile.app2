@@ -1,0 +1,5 @@
+FROM nginx:latest 
+
+RUN echo "Hello application app test api1" > /usr/share/nginx/html/index.html
+
+EXPOSE 80
