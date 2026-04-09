@@ -49,9 +49,8 @@ metadata:
 spec:
   selector:
     app: pgadmin4
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: postgres
     port: 80
     targetPort: 80
-    nodePort: 31222
