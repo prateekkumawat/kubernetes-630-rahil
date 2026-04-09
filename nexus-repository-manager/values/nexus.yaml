@@ -1,0 +1,13 @@
+nexus-repository-manager:
+  image:
+    repository: sonatype/nexus3
+    tag: 3.64.0
+  nexus:  
+    resources:
+      limits:
+        cpu: 2
+        memory: 2Gi
+      requests:
+        cpu: 1
+        memory: 1Gi   
+  
