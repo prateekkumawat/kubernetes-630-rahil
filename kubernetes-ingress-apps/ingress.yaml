@@ -90,3 +90,23 @@ spec:
             port: 
               number: 80
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nexus-ing
+  labels:
+    app.kubernetes.io/instance: nexus 
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: nexus.ocelottraining.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: nexus-nexus-repository-manager
+            port: 
+              number: 8081
