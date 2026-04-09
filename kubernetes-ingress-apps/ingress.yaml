@@ -76,8 +76,6 @@ metadata:
   namespace: postgres-app
   labels:
     app: pgadmin4
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2  
 spec:
   ingressClassName: nginx
   rules:
