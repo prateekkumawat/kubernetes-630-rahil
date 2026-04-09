@@ -43,6 +43,7 @@ spec:
             port: 
               number: 80
 
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -65,3 +66,29 @@ spec:
             name: app3
             port: 
               number: 80
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pgadmin-ing
+  namespace: postgres-app
+  labels:
+    app: pgadmin4
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2  
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: pgadmin.ocelottraining.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: pgadmin-svc
+            port: 
+              number: 80
+
