@@ -1,0 +1,20 @@
+image:
+  registry: docker.io
+  repository: bitnami/mysql
+  tag: 9.4.0-debian-12-r1
+
+architecture: standalone
+
+auth: 
+  rootPassword: "redhat"
+  username: "prateek"
+  password: "redhat123"
+
+primary: 
+  pdb: 
+    create: false
+secondery: 
+  pdb: 
+    create: flase    
+networkPolicy:
+   enabled: flase

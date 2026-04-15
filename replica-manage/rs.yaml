@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:
+    app: js
+    type: demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: demo
+      app: js
+  template:
+    metadata:
+      labels:
+        type: demo
+        app: js
+    spec:
+      containers:
+        - name: reactjs
+          image: prateekkumawat/js:latest
