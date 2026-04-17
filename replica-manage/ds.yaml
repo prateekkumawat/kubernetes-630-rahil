@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds-app
+  namespace: defaults
+  labels:
+    app: ds-app
+spec:
+  selector:
+    matchLabels:
+      app: ds-app
+  template:
+    metadata:
+      labels:
+        app: ds-app
+    spec:
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: ds-app
+        image: debian:latest
+        command: ["/bin/bash", "-c", "while true; do date; sleep 5; done"]
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+          requests:
+            cpu: 90m
+            memory: 100Mi
+        volumeMounts:
+        - name: localtime
+          mountPath: /etc/localtime
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: localtime
+        hostPath:
+          path: /usr/share/zoneinfo/Asia/Shanghai
