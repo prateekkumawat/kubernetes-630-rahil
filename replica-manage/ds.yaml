@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: ds-app
-  namespace: defaults
+  namespace: default
   labels:
     app: ds-app
 spec:
