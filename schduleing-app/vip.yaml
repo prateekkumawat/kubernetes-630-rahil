@@ -24,3 +24,5 @@ spec:
     args:
     - sleep
     - "3600"    
+  nodeSelector:
+    infra: vipapp   
