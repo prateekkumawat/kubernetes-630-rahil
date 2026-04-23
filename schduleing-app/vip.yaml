@@ -26,3 +26,33 @@ spec:
     - "3600"    
   nodeSelector:
     infra: vipapp   
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vip-mgmt
+spec:
+  containers:
+  - name: vip-mgmt1
+    image: busybox
+    args:
+    - sleep
+    - "3600"
+  - name: vip-mgmt2
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip-mgmt3
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip-mgmt4
+    image: busybox
+    args:
+    - sleep
+    - "3600"    
+  nodeSelector:
+    infra: mgmtapp
