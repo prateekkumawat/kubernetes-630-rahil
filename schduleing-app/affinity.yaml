@@ -64,4 +64,9 @@ spec:
                 operator: In
                 values:
                 - vipapp  
-            
+      tolerations:
+      - key: "vip-nodes"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"           
+ 
