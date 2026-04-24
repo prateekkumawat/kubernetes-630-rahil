@@ -36,6 +36,11 @@ kind: Pod
 metadata:
   name: vip-mgmt
 spec:
+  tolerations:
+    - key: "infra-nodes"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
   containers:
   - name: vip-mgmt1
     image: busybox
