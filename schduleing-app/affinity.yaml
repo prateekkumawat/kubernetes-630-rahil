@@ -55,4 +55,13 @@ spec:
         args:
         - sleep 
         - "3600"
-        
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: infra
+              operator: In
+              values:
+              - vipapp  
+          
