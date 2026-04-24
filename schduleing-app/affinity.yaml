@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vip
+spec:
+  containers:
+  - name: vip1
+    image: busybox
+    args:
+    - sleep
+    - "3600"
+  - name: vip2
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip3
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip4
+    image: busybox
+    args:
+    - sleep
+    - "3600"    
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: infra
+            operator: In
+            values:
+            - vipapp
+            - mgmtapp  
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mgmt-app
+spec:
+  selector:
+    matchLabels:
+      app: mgmt-app
+  template:
+    metadata:
+      labels:
+        app: mgmt-app
+    spec:
+      containers:
+      - name: mgmt-app
+        image: busybox
+        args:
+        - sleep 
+        - "3600"
+        
