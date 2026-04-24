@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vip
+spec:
+  containers:
+  - name: vip1
+    image: busybox
+    args:
+    - sleep
+    - "3600"
+  - name: vip2
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip3
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip4
+    image: busybox
+    args:
+    - sleep
+    - "3600"    
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vip-mgmt
+spec:
+  containers:
+  - name: vip-mgmt1
+    image: busybox
+    args:
+    - sleep
+    - "3600"
+  - name: vip-mgmt2
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip-mgmt3
+    image: busybox
+    args:
+    - sleep
+    - "3600" 
+  - name: vip-mgmt4
+    image: busybox
+    args:
+    - sleep
+    - "3600"    
